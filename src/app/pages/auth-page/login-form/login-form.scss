@@ -1,0 +1,64 @@
+/* src/app/pages/auth-page/login-form/login-form.component.scss */
+
+// O seletor :host é o <app-login-form> em si, mas os estilos do card
+// são aplicados ao mat-card diretamente para maior controle.
+:host {
+    display: block; // Garante que o componente se comporte como um bloco
+}
+
+.login-card {
+    // Define um padding interno generoso para o conteúdo do card
+    padding: 30px; 
+    
+    // Assegura que o card use toda a largura disponível do seu container (auth-content-wrapper)
+    width: 100%; 
+    
+    // Opcional: Remover margem vertical se o pai já centraliza
+    margin: 0; 
+}
+
+// Estilo para os títulos do card
+mat-card-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px; // Espaçamento entre título e subtítulo
+}
+
+mat-card-subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6); // Cor mais suave
+    margin-bottom: 24px; // Espaçamento após o subtítulo
+}
+
+// Faz os campos de formulário ocuparem a largura total e adiciona margem
+.full-width-field {
+    width: 100%;
+    margin-bottom: 16px; // Espaço entre os campos de input
+}
+
+// Estilo para o container de botões
+.form-actions {
+    display: flex;       // Usa Flexbox para alinhar os botões
+    justify-content: space-between; // Alinha um botão à esquerda e outro à direita
+    align-items: center; // Centraliza verticalmente os botões
+    margin-top: 24px;    // Espaçamento acima dos botões
+    padding-left: 0;    // Remove padding padrão do mat-card-actions se houver
+    padding-right: 0;   // Remove padding padrão do mat-card-actions se houver
+}
+
+// Estilo para o link "Esqueceu a senha?"
+.forgot-password-link {
+    // Ajuste de margem se necessário para alinhar com os outros elementos
+    margin-right: auto; // Empurra o botão "Entrar" para a direita
+}
+
+// Estilo para o footer do card (onde está o "Não tem conta?")
+mat-card-footer {
+    text-align: center; // Centraliza o texto
+    margin-top: 32px;    // Espaçamento generoso acima do footer
+    padding-bottom: 0; // Remove padding inferior se houver
+    
+    p {
+        margin: 0; // Remove margem padrão do parágrafo
+    }
+}
