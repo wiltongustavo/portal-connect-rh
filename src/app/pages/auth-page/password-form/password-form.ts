@@ -15,7 +15,7 @@ import { ResetPassword } from '../../../components/auth-components';
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatCardModule,
     MatStepperModule,
     MatButtonModule,
@@ -29,8 +29,7 @@ import { ResetPassword } from '../../../components/auth-components';
 })
 export class ResetPasswordPageComponent { // NOME MANTIDO
 
-  private router = inject(Router);
-  private fb = inject(FormBuilder);
+
 
   @ViewChild('stepper') stepper!: MatStepper;
 
@@ -41,7 +40,7 @@ export class ResetPasswordPageComponent { // NOME MANTIDO
   emailFormGroupPlaceholder: FormGroup;
   passwordFormGroupPlaceholder: FormGroup;
 
-  constructor() {
+  constructor(private router: Router, private fb: FormBuilder) {
     this.emailFormGroupPlaceholder = this.fb.group({ dummy: [''] });
     this.passwordFormGroupPlaceholder = this.fb.group({ dummy: [''] });
   }
@@ -64,5 +63,9 @@ export class ResetPasswordPageComponent { // NOME MANTIDO
       console.log('Senha redefinida com sucesso!');
       this.router.navigate(['/auth/login']);
     }, 1500);
+  }
+
+  return(): void {
+    this.router.navigate(['./auth/login'])
   }
 }

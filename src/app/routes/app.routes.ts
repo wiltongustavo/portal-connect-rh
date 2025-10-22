@@ -21,6 +21,12 @@ export const routes: Routes = [
                         .then(m => m.ResetPasswordPageComponent)
             },
             {
+                path: 'create-account',
+                loadComponent: () =>
+                    import('../pages/auth-page/create-account-form')
+                        .then(m => m.CreateAccountForm)
+            },
+            {
                 path: '',
                 redirectTo: 'login',
                 pathMatch: 'full'

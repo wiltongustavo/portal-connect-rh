@@ -1,0 +1,52 @@
+:host {
+  display: block; // Componente como bloco
+}
+
+.create-account-card {
+  padding: 30px;
+  width: 100%;
+  margin: 0 auto; // Centraliza horizontalmente se o pai tiver largura maior
+  max-width: 500px; // Limita a largura máxima para desktop
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 24px;
+}
+
+.full-width-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Botões alinhados à direita */
+  align-items: center;
+  gap: 12px; /* Espaçamento entre os botões */
+  margin-top: 24px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+mat-card-footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-bottom: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Caso queira destacar o botão Cancelar com cor de alerta */
+button[color='warn'] {
+  color: #d32f2f; /* Vermelho Material */
+}
