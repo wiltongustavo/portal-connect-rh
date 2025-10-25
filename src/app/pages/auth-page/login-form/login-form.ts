@@ -79,11 +79,12 @@ export class LoginForm {
       email: form?.email,
       password: form?.password,
     };
-    this.service.Authentication(payload).subscribe({
+    this.service.authentication(payload).subscribe({
       next: (response) => {
         //salvando token e roles
-        localStorage.setItem('token', response?.token);
-        localStorage.setItem('roles', JSON.stringify(response?.roles));
+        this.service.setToken(response?.token);
+        this.service.setRoles(response.roles);
+
         this.successFeedBackSnackBar();
         this.router.navigate(['/home/dash']);
       },

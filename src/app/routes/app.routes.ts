@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthPageComponent } from '../pages';
 import { HomePageComponent } from '../pages/home-page';
+import { authGuardGuard } from '../auth';
+
 
 export const routes: Routes = [
   {
@@ -33,6 +35,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
+    canActivateChild: [authGuardGuard],
     children: [
       {
         path: 'dash',
