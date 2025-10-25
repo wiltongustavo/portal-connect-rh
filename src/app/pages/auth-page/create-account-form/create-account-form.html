@@ -1,0 +1,62 @@
+<mat-card class="create-account-card">
+    <button mat-icon-button (click)="return()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+  <mat-card-header>
+    <mat-card-title>Cadastro de Conta</mat-card-title>
+    <mat-card-subtitle>Preencha os dados abaixo para criar sua conta.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Nome -->
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Seu nome completo" />
+        <mat-icon matSuffix>person_outline</mat-icon>
+        <mat-error *ngIf="form.get('nome')?.hasError('required')">Nome é obrigatório</mat-error>
+      </mat-form-field>
+
+      <!-- E-mail -->
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="exemplo@dominio.com" />
+        <mat-icon matSuffix>mail_outline</mat-icon>
+        <mat-error *ngIf="form.get('email')?.hasError('required')">E-mail é obrigatório</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">E-mail inválido</mat-error>
+      </mat-form-field>
+
+      <!-- Senha -->
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          formControlName="senha"
+          [type]="hide ? 'password' : 'text'"
+          placeholder="Crie uma senha"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Alternar visibilidade da senha'"
+          [attr.aria-pressed]="hide"
+          type="button"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('senha')?.hasError('required')">Senha é obrigatória</mat-error>
+      </mat-form-field>
+
+      <!-- Botões -->
+      <mat-card-actions align="end" class="form-actions">
+        <button mat-button type="button" color="warn" (click)="cancelar()">Cancelar</button>
+        <button matButton="filled" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          Cadastrar
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+
+</mat-card>

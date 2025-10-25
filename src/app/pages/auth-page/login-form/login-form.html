@@ -1,0 +1,42 @@
+<mat-card class="login-card">
+    <mat-card-header>
+        <mat-card-title>Acesso à Conta</mat-card-title>
+        <mat-card-subtitle>Entre com seu e-mail e senha.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>E-mail</mat-label>
+                <input matInput type="email" placeholder="exemplo@dominio.com" formControlName="email">
+                <mat-icon matSuffix>mail_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Senha</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                    placeholder="Sua senha secreta">
+
+                <button mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+
+            </mat-form-field>
+
+            <mat-card-actions align="end" class="form-actions">
+                <a mat-button [routerLink]="['/auth/reset-password']" color="accent" class="forgot-password-link">Esqueceu a Senha?</a>
+
+                <button matButton="filled" mat-raised-button color="primary" type="submit">
+                    Entrar
+                </button>
+            </mat-card-actions>
+
+        </form>
+    </mat-card-content>
+
+    <mat-card-footer class="text-center">
+        <p>Não tem conta? <a mat-button color="accent" [routerLink]="['/auth/create-account']">Cadastre-se</a></p>
+    </mat-card-footer>
+</mat-card>
