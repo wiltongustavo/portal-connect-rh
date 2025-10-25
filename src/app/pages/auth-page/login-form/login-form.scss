@@ -62,3 +62,13 @@ mat-card-footer {
         margin: 0; // Remove margem padrão do parágrafo
     }
 }
+
+.snackbar-success {
+  background-color: #4caf50; // verde
+  color: white;
+}
+
+.snackbar-error {
+  background-color: #f44336; // vermelho
+  color: white;
+}
