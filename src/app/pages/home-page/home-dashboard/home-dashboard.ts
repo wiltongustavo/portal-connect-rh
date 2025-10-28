@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home-dashboard',
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  standalone: true,
   templateUrl: './home-dashboard.html',
   styleUrl: './home-dashboard.scss',
 })

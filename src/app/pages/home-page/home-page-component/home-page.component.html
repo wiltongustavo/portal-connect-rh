@@ -1,0 +1,63 @@
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav 
+    #sidenav 
+    [mode]="sidenav.mode" 
+    [opened]="sidenav.opened"
+  >
+    <div class="sidenav-header"> Portal Connect RH</div> 
+
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let item of menuItems"
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        (click)="closeIfOver()"
+      >
+        <mat-icon *ngIf="item.icon" matListItemIcon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+      </a>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
+
+    <div class="sidenav-footer">
+      <small>© 2025 Portal RH</small>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    
+    <mat-toolbar color="primary" class="header-toolbar">
+      <button 
+        mat-icon-button 
+        (click)="toggleSidenav()" 
+        class="menu-button" 
+        *ngIf="sidenav.mode === 'over'"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="toolbar-title">Portal Connect RH</span>
+      <span class="spacer"></span>
+
+      <button *ngIf="isLoggedIn" mat-icon-button (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+      <button *ngIf="!isLoggedIn" mat-icon-button (click)="login()" matTooltip="Login">
+        <mat-icon>login</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="page-content">
+      <h2 class="content-title">Dashboard Sidebar</h2>
+      
+      <router-outlet></router-outlet>
+    </div>
+
+    <mat-toolbar color="primary" class="footer-toolbar">
+      <span>Portal Connect RH - Todos os direitos reservados</span>
+    </mat-toolbar>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
