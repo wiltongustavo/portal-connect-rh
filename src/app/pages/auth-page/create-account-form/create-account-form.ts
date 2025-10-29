@@ -68,10 +68,10 @@ export class CreateAccountForm {
     if (this.form.valid) {
       const formValue = this.form.value;
       const payload: ICreateUserRequestDTO = {
-        email: formValue.email,
-        name: formValue.name,
-        password: formValue.password,
-        phoneNumber: '',
+        email: formValue?.email,
+        name: formValue?.name,
+        password: formValue?.password,
+        phoneNumber: formValue?.phone,
       };
       this.service.authentication(payload).subscribe({
         next: () => {
