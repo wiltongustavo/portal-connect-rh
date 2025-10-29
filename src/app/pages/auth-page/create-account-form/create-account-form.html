@@ -1,7 +1,7 @@
 <mat-card class="create-account-card">
-    <button mat-icon-button (click)="return()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+  <button mat-icon-button (click)="return()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   <mat-card-header>
     <mat-card-title>Cadastro de Conta</mat-card-title>
     <mat-card-subtitle>Preencha os dados abaixo para criar sua conta.</mat-card-subtitle>
@@ -12,9 +12,9 @@
       <!-- Nome -->
       <mat-form-field appearance="outline" class="full-width-field">
         <mat-label>Nome</mat-label>
-        <input matInput formControlName="nome" placeholder="Seu nome completo" />
+        <input matInput formControlName="name" placeholder="Seu nome completo" />
         <mat-icon matSuffix>person_outline</mat-icon>
-        <mat-error *ngIf="form.get('nome')?.hasError('required')">Nome é obrigatório</mat-error>
+        <mat-error *ngIf="form.get('name')?.hasError('required')">Nome é obrigatório</mat-error>
       </mat-form-field>
 
       <!-- E-mail -->
@@ -26,12 +26,34 @@
         <mat-error *ngIf="form.get('email')?.hasError('email')">E-mail inválido</mat-error>
       </mat-form-field>
 
+      <!-- Telefone -->
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Telefone</mat-label>
+        <input
+          matInput
+          formControlName="phone"
+          type="tel"
+          placeholder="(99) 99999-9999"
+          mask="(00) 00000-0000"
+        />
+        <!-- Ícone de telefone -->
+        <mat-icon matSuffix>phone</mat-icon>
+
+        <!-- Mensagens de Erro -->
+        <mat-error *ngIf="form.get('phone')?.hasError('required')"
+          >Telefone é obrigatório</mat-error
+        >
+        <mat-error *ngIf="form.get('phone')?.hasError('pattern')">
+          Formato inválido. Use (XX) XXXXX-XXXX.
+        </mat-error>
+      </mat-form-field>
+      
       <!-- Senha -->
       <mat-form-field appearance="outline" class="full-width-field">
         <mat-label>Senha</mat-label>
         <input
           matInput
-          formControlName="senha"
+          formControlName="password"
           [type]="hide ? 'password' : 'text'"
           placeholder="Crie uma senha"
         />
@@ -45,18 +67,24 @@
         >
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-        <mat-error *ngIf="form.get('senha')?.hasError('required')">Senha é obrigatória</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('required')"
+          >Senha é obrigatória</mat-error
+        >
       </mat-form-field>
 
       <!-- Botões -->
       <mat-card-actions align="end" class="form-actions">
         <button mat-button type="button" color="warn" (click)="cancelar()">Cancelar</button>
-        <button matButton="filled" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        <button
+          matButton="filled"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
           Cadastrar
         </button>
       </mat-card-actions>
     </form>
   </mat-card-content>
-
-
 </mat-card>

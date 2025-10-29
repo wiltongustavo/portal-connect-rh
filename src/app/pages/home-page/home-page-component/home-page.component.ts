@@ -1,4 +1,4 @@
-import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,6 +11,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
+import { AuthService } from '../../../services/auth-service';
 
 // Interface para garantir a tipagem do array de navegação
 interface MenuItem {
@@ -41,6 +42,7 @@ interface MenuItem {
 export class HomePageComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
+  
   isLoggedIn = true;
   isMobile = false; // Flag para controlar a visibilidade de elementos, se necessário
 
@@ -54,7 +56,7 @@ export class HomePageComponent implements OnInit {
   ];
 
 
-  constructor(private breakpoint: BreakpointObserver) {
+  constructor(private breakpoint: BreakpointObserver, private service: AuthService) {
     // 2. LÓGICA DE RESPONSIVIDADE (Ajusta mode/opened do Sidenav)
     this.breakpoint.observe(['(max-width: 768px)'])
       .pipe(takeUntilDestroyed())
@@ -94,6 +96,6 @@ export class HomePageComponent implements OnInit {
 
   logout(): void {
     this.isLoggedIn = false;
-    // Lógica real de roteamento e autenticação viria aqui
+    this.service.logout()
   }
 }

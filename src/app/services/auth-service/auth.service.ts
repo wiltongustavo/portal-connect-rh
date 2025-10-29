@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { IAuthRequestDTO } from '../../interfaces/IAutRequestDTO';
 import { IAuthResponseDTO } from '../../interfaces/IAuthResponseDTO';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8081/api/v1';
   private isBrowser: boolean;
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
@@ -56,6 +57,7 @@ export class AuthService {
     if (this.isBrowser) {
       localStorage.clear();
     }
+    this.router.navigate(['/auth/login']); 
   }
 
   authentication(payload: IAuthRequestDTO): Observable<IAuthResponseDTO> {
