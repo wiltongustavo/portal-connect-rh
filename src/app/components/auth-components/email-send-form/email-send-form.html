@@ -1,23 +1,19 @@
 <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-    
-    <p class="form-instruction">
-        Informe seu e-mail cadastrado para iniciar a redefinição de senha.
-    </p>
+  <p class="form-instruction">Informe seu e-mail cadastrado para iniciar a redefinição de senha.</p>
 
-    <mat-form-field appearance="outline" class="full-width-field">
-        <mat-label>E-mail</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="nome@exemplo.com" required>
-        <mat-icon matSuffix>mail_outline</mat-icon>
-        <mat-error *ngIf="emailForm.get('email')?.hasError('required') && emailForm.get('email')?.touched">O e-mail é obrigatório.</mat-error>
-        <mat-error *ngIf="emailForm.get('email')?.hasError('email') && emailForm.get('email')?.touched">E-mail inválido.</mat-error>
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width-field">
+    <mat-label>E-mail</mat-label>
+    <input matInput formControlName="email" type="email" placeholder="nome@exemplo.com" required />
+    <mat-icon matSuffix>mail_outline</mat-icon>
+    <mat-error *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched">
+      <span *ngIf="emailForm.get('email')?.errors?.['required']">O e-mail é obrigatório.</span>
+      <span *ngIf="emailForm.get('email')?.errors?.['email']">E-mail inválido.</span>
+    </mat-error>
+  </mat-form-field>
 
-    <div class="form-actions-button">
-        <button mat-raised-button 
-                color="primary" 
-                type="submit" 
-                [disabled]="emailForm.invalid">
-            Enviar Instruções
-        </button>
-    </div>
+  <div class="form-actions-button">
+    <button matButton="filled" mat-raised-button color="primary" type="submit" [disabled]="emailForm.invalid">
+      Enviar Instruções
+    </button>
+  </div>
 </form>

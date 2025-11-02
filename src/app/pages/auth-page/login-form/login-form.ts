@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,17 +30,23 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: './login-form.html',
   styleUrl: './login-form.scss',
 })
-export class LoginForm {
+export class LoginForm implements OnInit {
   hide = true; // Começa escondida (type="password")
 
-  loginForm: FormGroup;
+  loginForm: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
     private service: AuthService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {
+  ) {}
+  
+  ngOnInit(): void {
+    this.initLoginForm();
+  }
+
+  initLoginForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

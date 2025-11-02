@@ -18,7 +18,7 @@ export const routes: Routes = [
       {
         path: 'reset-password',
         loadComponent: () =>
-          import('../pages/auth-page/password-form').then((m) => m.ResetPasswordPageComponent),
+          import('../pages/auth-page/reset-password-form').then((m) => m.ResetPasswordPageComponent),
       },
       {
         path: 'create-account',

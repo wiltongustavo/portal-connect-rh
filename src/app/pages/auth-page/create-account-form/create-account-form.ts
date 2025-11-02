@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,8 +28,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: './create-account-form.html',
   styleUrl: './create-account-form.scss',
 })
-export class CreateAccountForm {
-  form: FormGroup;
+export class CreateAccountForm implements OnInit {
+  form: FormGroup = new FormGroup({});
   hide = true;
 
   constructor(
@@ -37,7 +37,11 @@ export class CreateAccountForm {
     private router: Router,
     private service: CreateAccountService,
     private snackBar: MatSnackBar
-  ) {
+  ) {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+  initForm(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
