@@ -12,6 +12,7 @@
         *ngFor="let item of menuItems"
         [routerLink]="item.link"
         routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
         (click)="closeIfOver()"
       >
         <mat-icon *ngIf="item.icon" matListItemIcon>{{ item.icon }}</mat-icon>
